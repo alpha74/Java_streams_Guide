@@ -22,6 +22,8 @@ A birds-eye view of all major methods based on `Collections`
 
 - Takes a `predicate` as a argument, which returns a `boolean` as output.
 
+- Example of filter() on a List of integers.
+
 ```
 List<Integer> numbersList = Arrays.asList(10,15,20,25,30);
 ```
@@ -38,14 +40,24 @@ List<Integer> evenList2 = numbersList.stream()
         .toList();
 ```
 
-#### forEach()
-
 - Takes a `consumer` expression as input and does not return anything.
 
 ```
 // Print even numbers
 numbersList.stream().filter(n -> n % 2 == 0).forEach(n -> System.out.println(n));
 
-// Same: Print even numbers using shorthand method reference 
+// Same: Print even numbers using shorthand method reference
 numbersList.stream().filter(n -> n % 2 == 0).forEach(System.out::println);
 ```
+
+- `System.out` is a static method.
+
+- Example of filter() on a List of strings.
+ 
+```
+List<String> stringList = List.of("OptimusPrime", null, "Megatron", "Bumblebee", "Ratchet", null);
+
+// Filter non-null values which have len > 7
+List<String> longStringList = stringList.stream().filter(s -> s != null && s.length() > 7).toList();
+```
+
