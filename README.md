@@ -61,3 +61,33 @@ List<String> stringList = List.of("OptimusPrime", null, "Megatron", "Bumblebee",
 List<String> longStringList = stringList.stream().filter(s -> s != null && s.length() > 7).toList();
 ```
 
+-------
+
+#### map()
+
+- It accepts a function or consumer as input.
+
+- Example for converting each string in a List to UpperCase
+
+```
+List<String> vehicles = List.of("car", "bus", "train", "place", "ship");
+
+// Convert each item to upper case
+List<String> vehiclesUpperCase = vehicles.stream()
+      .map(name -> name.toUpperCase())
+      .collect(Collectors.toList());
+```
+
+- Example for calculating len of each string and appending to same item
+
+```
+// Find length of each element and append to same item
+List<String> vehicleLenList = vehicles.stream()
+        .map(name -> name + " len is " + name.length())
+        .collect(Collectors.toList());
+```
+
+
+
+
+
