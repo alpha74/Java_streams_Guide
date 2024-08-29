@@ -11,9 +11,18 @@ A birds-eye view of all major methods based on `Collections`
 ![image](https://github.com/user-attachments/assets/08cd2cdd-f1f9-4292-82a0-c2997b2064fd)
 
 
-- `Collections`: It represents a a group of objects as a single entity.
+- `Collections`
+        - It represents a a group of objects as a single entity.
 
-- `Stream`: It is used to process data from collections.
+- `Stream`
+        - It is used to process data from collections.
+
+- `Non-terminal Operation`
+        - It is an operation which adds a listener to the stream which may modify the stream elements.
+
+- `Terminal Operation`
+        - It is an operations which returns a result after stream processing.
+
 
 -------
 
@@ -113,5 +122,73 @@ List<Integer> combinedList = listList.stream().flatMap(x -> x.stream()).collect(
 combinedList = listList.stream().flatMap(x -> x.stream()).map(n -> n +10).collect(Collectors.toList());
 ```
 
+-------
+
+#### distinct()
+
+- Find distinct elements from a given collection.
+
+```
+List<String> vehicleList = Arrays.asList("car", "bike", "car", "bike", "truck", "ship");
+List<String> uniqueVehicleList = vehicleList.stream().distinct().collect(Collectors.toList());
+```
+
+-------
+
+#### count() & limit()
+
+- `count()` returns count of objects as `long`.
+
+```
+List<String> vehicleList = Arrays.asList("car", "bike", "car", "bike", "truck", "ship");
+long count = vehicleList.stream().distinct().count();                // Returns 4
+```
+
+- `limt()` is used to collect a limited number of objects from a stream.
+- Takes `maxsize` as input param.
+
+```
+long count = vehicleList.stream().distinct().limit(2).count();        // Returns 2
+```
+
+-------
+
+#### min() & max()
+
+- Takes a `comparator()` as input, and returns an `Optional<>` object.
+
+```
+List<Integer> numList = Arrays.asList(1,1,2,2,3,4);
+
+Optional<Integer> minVal = numList.stream().min((val1, val2) -> {return val1.compareTo(val2);});
+System.out.println(minVal.get());   // 1
+
+Optional<Integer> maxVal = numList.stream().max((val1, val2) -> {return val1.compareTo(val2);});
+System.out.println(maxVal.get());   // 4
+```
+
+-------
+
+#### reduce()
+
+- Takes input as an `identity` and `accumulator` as params.
+- Reduces all elements in the stream to a single object.
+
+```
+List<Integer> numList = Arrays.asList(1,1,2,2,3,4);
+
+// Calculate sum
+Optional<Integer> sumVal = numList.stream().reduce((val, combinedVal) -> {
+            return val + combinedVal;
+        });
+
+
+List<String> vehicleList = Arrays.asList("car", "bike", "car", "bike", "truck", "ship");
+
+// Append all strings to single string
+Optional<String> appended = vehicleList.stream().reduce((val, combined) -> {
+    return val+combined;
+});
+```
 
 
