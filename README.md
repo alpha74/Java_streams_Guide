@@ -10,6 +10,7 @@ A birds-eye view of all major methods based on `Collections`
 
 ![image](https://github.com/user-attachments/assets/08cd2cdd-f1f9-4292-82a0-c2997b2064fd)
 
+- [Youtube source](https://www.youtube.com/watch?v=33JrZGtKOEE&list=PLUDwpEzHYYLvTPVqVIt7tlBohABLo4gyg&index=1&ab_channel=SDET-QA)
 
 - `Collections`
         - It represents a a group of objects as a single entity.
@@ -191,4 +192,16 @@ Optional<String> appended = vehicleList.stream().reduce((val, combined) -> {
 });
 ```
 
+-------
+
+#### toArray()
+
+- It converts the stream of objects to array.
+
+```
+List<Integer> numList = Arrays.asList(1,1,2,2,3,4);
+
+// Convert to array
+Object arr[] = numList.stream().toArray();
+```
 
