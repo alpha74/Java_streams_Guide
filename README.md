@@ -134,7 +134,6 @@ List<String> vehicleList = Arrays.asList("car", "bike", "car", "bike", "truck", 
 List<String> uniqueVehicleList = vehicleList.stream().distinct().collect(Collectors.toList());
 ```
 
--------
 
 #### count() & limit()
 
@@ -205,3 +204,76 @@ List<Integer> numList = Arrays.asList(1,1,2,2,3,4);
 Object arr[] = numList.stream().toArray();
 ```
 
+-------
+
+#### sorted()
+
+- Used to sort a stream of objects.
+
+```
+List<Integer> numList = Arrays.asList(2,5,1,6,3,7);
+
+// Sort in ascending order
+List<Integer> ascSorted = numList.stream().sorted().collect(Collectors.toList());
+
+// Sort in descending order
+List<Integer> descSorted = numList.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+```
+
+-------
+
+#### anyMatch() 
+
+- Returns `true` if condition matches any value in the stream.
+
+```
+Set<String> fruits = new HashSet<>();
+
+fruits.add("21 mangoes");
+fruits.add("31 apples");
+fruits.add("412 oranges");
+fruits.add("13 guavas");
+
+boolean res1 = fruits.stream().anyMatch(val -> {return val.contains("4");});        // true
+```
+
+
+#### allMatch() 
+
+- Returns `true` if all elements match the condition, else `false`.
+
+```
+boolean res2 = fruits.stream().allMatch(val -> {return val.contains("1");});        // true
+```
+
+#### noneMatch()
+
+- Returns `true` if none of the elements match the conditions, else `false`.
+
+```
+boolean res3 = fruits.stream().noneMatch(val -> {return val.contains("s");});        // false
+```
+
+-------
+
+#### findAny()
+
+- Returns `Optional<>`, or `NoSuchElementException` if no element is found.
+- It may or may not return the first matched element.
+
+```
+List<Integer> numList = Arrays.asList(2,5,1,6,3,7);
+
+Optional<Integer> any = numList.stream().findAny();        // 2 (but non-deterministic)
+```
+
+#### findFirst()
+
+- Returns `Optional<>`, or `NoSuchElementException` if no element is found.
+- It strictly returns the first matched element.
+
+```
+List<Integer> numList = Arrays.asList(2,5,1,6,3,7);
+
+Optional<Integer> first = numList.stream().findFirst();        // 2
+```
