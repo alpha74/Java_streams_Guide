@@ -264,7 +264,7 @@ boolean res3 = fruits.stream().noneMatch(val -> {return val.contains("s");});   
 ```
 List<Integer> numList = Arrays.asList(2,5,1,6,3,7);
 
-Optional<Integer> any = numList.stream().findAny();        // 2 (but non-deterministic)
+Optional<Integer> any = numList.stream().findAny();        // 2 (but non-deterministic, helpful in parallelStream())
 ```
 
 #### findFirst()
@@ -277,3 +277,48 @@ List<Integer> numList = Arrays.asList(2,5,1,6,3,7);
 
 Optional<Integer> first = numList.stream().findFirst();        // 2
 ```
+
+
+-------
+
+##### Stream.concat()
+
+- Used to concatenate two `Stream` objects into single `Stream`.
+
+```
+List<String> list1 = Arrays.asList("dog", "cat", "rat");
+List<String> list2 = Arrays.asList("eagle", "sparrow", "hen");
+
+Stream<String> stream1 = list1.stream();
+Stream<String> stream2 = list2.stream();
+
+List<String> concatenated = Stream.concat(stream1, stream2).collect(Collectors.toList());
+System.out.println(concatenated);
+```
+
+
+-------
+
+#### Parallel Streams
+
+- All collections support `parallelStream()` method that returns a possibly parallel stream.
+- When a stream executes in parallel, the Java Runtime divides the stream into multiple substreams.
+- The aggregate operators iterates over these sub-streams in parallel and then combine the result. This can improve the performance.
+
+- Eg: `List<String> parallelStream = list1.parallelStream()`
+
+- Using `stream()`, operations are performed sequentially, but using `parallelStream()`, operations are performed parallely.
+
+```
+List<String> vehicleList = Arrays.asList("car", "bike", "car", "bike", "truck", "ship");
+
+// Using stream()
+List<String> filterSeq = vehicleList.stream().filter(x -> x.contains("a")).collect(Collectors.toList());
+
+// Using parallelStream()
+List<String> filterPar = vehicleList.parallelStream().filter(x -> x.contains("a")).collect(Collectors.toList());
+
+// Convert stream to parallel stream
+List<String> filterPar2 = vehicleList.stream().parallel().filter(x -> x.contains("a")).collect(Collectors.toList());
+```
+
