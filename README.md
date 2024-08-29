@@ -108,4 +108,10 @@ List<Integer> combinedList = listList.stream().flatMap(x -> x.stream()).collect(
 // Output: [1,2,3,4,5,6]
 ```
 
+```
+// Operating on each item in each list and combining to single list
+combinedList = listList.stream().flatMap(x -> x.stream()).map(n -> n +10).collect(Collectors.toList());
+```
+
+
 
