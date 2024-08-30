@@ -6,9 +6,10 @@
 
 ### Overview 
 
-A birds-eye view of all major methods based on `Collections`
+A birds-eye view of all major methods based on `Collections` and `stream()`
 
-![image](https://github.com/user-attachments/assets/08cd2cdd-f1f9-4292-82a0-c2997b2064fd)
+![image](https://github.com/user-attachments/assets/fa11c742-8bf6-46dd-adbc-04056b48485d)
+
 
 - [Youtube source](https://www.youtube.com/watch?v=33JrZGtKOEE&list=PLUDwpEzHYYLvTPVqVIt7tlBohABLo4gyg&index=1&ab_channel=SDET-QA)
 
